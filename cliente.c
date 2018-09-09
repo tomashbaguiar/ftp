@@ -1,19 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
-
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <netdb.h>
-
 #include <string.h>
-
 #include <sys/time.h>
-
 #include "function.h"
 
     // ./clienteFTP host_do_servidor porto_servidor nome_arquivo tam_buffer
@@ -107,3 +102,4 @@ int main(int argc, char **argv)
 
     return EXIT_SUCCESS;
 }
+
