@@ -90,10 +90,9 @@ int main(int argc, char **argv)
     //  Termina contagem de tempo de execução   //
     struct timeval end;                                                             // Estrutura que recebe o tempo final.
     gettimeofday(&end, NULL);                                                       // Recebe o tempo final.
-
-    double finalTime = convertTimeDouble(end, begin);                               // Converte o tempo para double.
-
-    fprintf(stdout, "Buffer = %5u byte(s), %10.2f kbps (%lu bytes em %lf s).\n", bufSize, (bytesRecv / finalTime), bytesRecv, finalTime);
+    struct timeval finalTime = convertTime(end, begin);                             // Converte o tempo para double.
+    float fFinalTime = convertTimeDouble(end, begin);
+    fprintf(stdout, "Buffer = %5u byte(s), %10.2f kbps (%lu bytes em %3u.%06u s).\n", bufSize, (float) (bytesRecv / fFinalTime), bytesRecv, (uint32_t) finalTime.tv_sec, (uint32_t) finalTime.tv_usec);
 
     close(sockfd);                                                                  // Fecha o endpoint do cliente.
     

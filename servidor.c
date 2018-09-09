@@ -103,11 +103,10 @@ int main(int argc, char **argv)
     struct timeval end;                                                             // Estrutura que recebe o tempo final.
     gettimeofday(&end, NULL);                                                       // Recebe o tempo final.
 
-    double finalTime = convertTimeDouble(end, begin);                               // Converte tempo para double.
+    struct timeval finalTime = convertTime(end, begin);                             // Calcula o tempo total.
 
     //  Imprime o nome do arquivo e bytes enviados  //
-    fprintf(stdout, "Enviados %lu bytes do arquivo %s.\n", sentBytes, fileName);
-    fprintf(stdout, "Tempo = %f s", finalTime);
+    fprintf(stdout, "Enviados %lu bytes do arquivo %s em %ld.%06ld segundos.\n", sentBytes, fileName, finalTime.tv_sec, finalTime.tv_usec);
 
     free(fileName);                                                                 // Remove espaço alocado para o nome do arquivo.
     close(sockfd);                                                                  // Fecha o endpoint do socket.

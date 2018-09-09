@@ -3,6 +3,20 @@
 #include <stdlib.h>
 #include "function.h"
 
+struct timeval
+convertTime(struct timeval end, struct timeval begin)
+{
+    //  Calcula o tempo total   //
+    struct timeval finalTime;
+    long int seconds = (end.tv_sec - begin.tv_sec);
+    long int microseconds = (end.tv_usec - begin.tv_usec);
+    long int timeConv = (seconds * 1000000) + microseconds;
+    finalTime.tv_sec = timeConv / 1000000;
+    finalTime.tv_usec = timeConv - (finalTime.tv_sec * 1000000);
+
+    return finalTime;                                                                   // Retorna o tempo real total.
+}
+
 double
 convertTimeDouble(struct timeval end, struct timeval begin)
 {
