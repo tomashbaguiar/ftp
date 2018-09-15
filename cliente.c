@@ -53,7 +53,7 @@ int main(int argc, char **argv)
     gettimeofday(&begin, NULL);                                                     // Recebe o tempo inicial.
 
     //  Envia ao servidor o nome do arquivo //
-    uint16_t bufSize = atoi(argv[4]);                                               // Recebe o tamanho do buffer.
+    uint32_t bufSize = atoi(argv[4]);                                               // Recebe o tamanho do buffer.
     char *fileName = argv[3];                                                       // Recebe o nome do arquivo.
     if(send(sockfd, (char *) fileName, strlen(fileName), 0) == -1)  {               // Verifica e envia o buffer com o nome do arquivo.
         perror("send");                                                             // Imprime erro de envio.
@@ -93,6 +93,12 @@ int main(int argc, char **argv)
     struct timeval finalTime = convertTime(end, begin);                             // Converte o tempo para double.
     float fFinalTime = convertTimeDouble(end, begin);
     fprintf(stdout, "Buffer = %5u byte(s), %10.2f kbps (%lu bytes em %3u.%06u s).\n", bufSize, (float) (bytesRecv / fFinalTime), bytesRecv, (uint32_t) finalTime.tv_sec, (uint32_t) finalTime.tv_usec);
+
+    /*
+    char testes[1024] = {0};
+    sprintf(testes, "echo %5u - %10.2f >> testes.txt", bufSize, (float) (bytesRecv / fFinalTime));
+    system(testes);
+    */
 
     close(sockfd);                                                                  // Fecha o endpoint do cliente.
     

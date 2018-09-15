@@ -59,7 +59,7 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;                                                        // Encerra o programa com sinal de erro.
     }
 
-    uint16_t bufSize = atoi(argv[2]);                                               // Recebe como argumento o tamanho do buffer.
+    uint32_t bufSize = atoi(argv[2]);                                               // Recebe como argumento o tamanho do buffer.
 
     // Recebe o nome do arquivo de leitura  //
     char *fileName = (char *) malloc(bufSize * sizeof(char));                       // Aloca espaço para o nome do arquivo.
